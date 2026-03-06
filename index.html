@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offshore Labs — Independent App Studio</title>
+  <meta name="description" content="Offshore Labs is an independent mobile app studio building thoughtful tools for modern nomads and expats.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0d12;
+      --surface: #111520;
+      --border: #1e2535;
+      --gold: #c9a84c;
+      --gold-dim: #7a6230;
+      --text: #e8eaf0;
+      --muted: #5a6080;
+      --accent: #2a6fff;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(42,111,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+    nav {
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--gold); }
+    .nav-contact {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 4px;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+    .nav-contact:hover { border-color: var(--gold-dim); color: var(--gold); }
+    .hero { padding: 100px 0 80px; }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+    h1 em { font-style: normal; color: var(--gold); }
+    .hero-desc {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .meta-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .meta-value { font-size: 13px; color: var(--text); }
+    .meta-divider { width: 1px; height: 36px; background: var(--border); }
+    .section { padding: 80px 0; border-top: 1px solid var(--border); }
+    .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 48px; }
+    .section-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em; }
+    .section-count { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .app-card { background: var(--surface); padding: 32px; transition: background 0.2s; position: relative; }
+    .app-card:hover { background: #151a28; }
+    .app-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 20px; }
+    .app-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .app-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+    .app-tag { display: inline-block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; border: 1px solid var(--border); color: var(--muted); }
+    .app-tag.live { border-color: rgba(42,111,255,0.3); color: var(--accent); background: rgba(42,111,255,0.05); }
+    .contact-section { padding: 80px 0; border-top: 1px solid var(--border); }
+    .contact-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .contact-text h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .contact-text p { color: var(--muted); font-size: 13px; }
+    .contact-email { display: inline-flex; align-items: center; gap: 10px; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 16px; color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dim); padding: 14px 24px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .contact-email:hover { background: rgba(201,168,76,0.08); }
+    footer { padding: 32px 0; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--muted); }
+    .footer-logo span { color: var(--gold); }
+    .footer-info { font-size: 12px; color: var(--muted); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-tag { animation: fadeUp 0.6s ease both; }
+    h1 { animation: fadeUp 0.6s 0.1s ease both; }
+    .hero-desc { animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-meta { animation: fadeUp 0.6s 0.3s ease both; }
+    @media (max-width: 600px) {
+      .apps-grid { grid-template-columns: 1fr; }
+      .contact-box { flex-direction: column; align-items: flex-start; }
+      .hero { padding: 60px 0 50px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <nav>
+    <a href="/" class="logo">Offshore<span>Labs</span></a>
+    <a href="mailto:dev@offshorelabs.dev" class="nav-contact">dev@offshorelabs.dev</a>
+  </nav>
+  <section class="hero">
+    <div class="hero-tag">Independent App Studio</div>
+    <h1>Built at the<br><em>edge</em> of things.</h1>
+    <p class="hero-desc">
+      Offshore Labs makes focused mobile apps for people who live, work, and move beyond borders. Based in Phuket, Thailand.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Location</span>
+        <span class="meta-value">Phuket, Thailand</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="meta-label">Platform</span>
+        <span class="meta-value">iOS · Android</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="meta-label">Founded</span>
+        <span class="meta-value">2024</span>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-header">
+      <span class="section-title">Products</span>
+      <span class="section-count">04 apps</span>
+    </div>
+    <div class="apps-grid">
+      <div class="app-card">
+        <div class="app-icon" style="background: rgba(42,111,255,0.1);">🛂</div>
+        <div class="app-name">EasyStay TH</div>
+        <p class="app-desc">Visa deadline tracker for Thailand expats. Never miss a 90-day report or extension date again.</p>
+        <span class="app-tag live">iOS · Live</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background: rgba(0,180,200,0.1);">🤿</div>
+        <div class="app-name">Weekend Diver</div>
+        <p class="app-desc">Apple Watch dive computer for casual and tourist divers. Weekly subscription, no commitment.</p>
+        <span class="app-tag">watchOS · Coming Soon</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background: rgba(201,168,76,0.1);">🍷</div>
+        <div class="app-name">MyWineCave</div>
+        <p class="app-desc">Wine shop app and personal collection tracker with live inventory from local retailers.</p>
+        <span class="app-tag">iOS · In Development</span>
+      </div>
+      <div class="app-card">
+        <div class="app-icon" style="background: rgba(80,200,100,0.1);">💬</div>
+        <div class="app-name">ManiTalk</div>
+        <p class="app-desc">Thai bank SMS reader that reads QR payment confirmations aloud. Built for street vendors.</p>
+        <span class="app-tag live">Android · Live</span>
+      </div>
+    </div>
+  </section>
+  <section class="contact-section">
+    <div class="contact-box">
+      <div class="contact-text">
+        <h2>Get in touch</h2>
+        <p>Press, partnerships, or just to say hello.</p>
+      </div>
+      <a href="mailto:dev@offshorelabs.dev" class="contact-email">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        dev@offshorelabs.dev
+      </a>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-logo">Offshore<span>Labs</span></div>
+    <div class="footer-info">© 2024 Offshore Labs · offshorelabs.dev</div>
+  </footer>
+</div>
+</body>
+</html>
