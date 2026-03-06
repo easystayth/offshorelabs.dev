@@ -246,4 +246,252 @@ dev@offshorelabs.dev
 </footer>
 </div>
 </body>
-</html>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ManiTalk — Offshore Labs</title>
+<meta name="description" content="Your payments, out loud. Thai bank SMS reader for street vendors. Reads QR payment confirmations aloud in Thai and English. 79 THB/month.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0d12;--surface:#111520;--border:#1e2535;--gold:#c9a84c;--gold-dim:#7a6230;--text:#e8eaf0;--muted:#5a6080;--accent:#2a6fff}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;line-height:1.7;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(42,111,255,0.06) 0%,transparent 70%);pointer-events:none;z-index:0}
+.container{max-width:900px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+nav{padding:28px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);gap:16px;flex-wrap:wrap}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em;color:var(--text);text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-badge{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px;border:1px solid rgba(42,111,255,0.3);color:var(--accent);background:rgba(42,111,255,0.05)}
+.nav-back{font-size:12px;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);padding:6px 14px;border-radius:4px;transition:all 0.2s;letter-spacing:0.05em}
+.nav-back:hover{border-color:var(--gold-dim);color:var(--gold)}
+.hero{padding:100px 0 80px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(38px,6vw,64px);line-height:1.05;letter-spacing:-0.03em;margin-bottom:16px;color:var(--text)}
+h1 em{font-style:normal;color:var(--gold)}
+.hero-tagline{font-family:'Syne',sans-serif;font-weight:600;font-size:clamp(16px,2.5vw,22px);color:var(--muted);margin-bottom:32px;letter-spacing:-0.01em}
+.hero-desc{max-width:560px;color:var(--muted);font-size:14px;line-height:1.85;margin-bottom:32px}
+.price-badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--gold);border:1px solid var(--gold-dim);background:rgba(201,168,76,0.05);padding:8px 16px;border-radius:6px;margin-bottom:32px;letter-spacing:0.03em}
+.cta-store{display:inline-flex;align-items:center;gap:10px;background:var(--text);color:var(--bg);font-family:'Syne',sans-serif;font-weight:700;font-size:14px;padding:14px 28px;border-radius:8px;text-decoration:none;transition:opacity 0.2s;letter-spacing:0.01em}
+.cta-store:hover{opacity:0.85}
+.cta-store svg{flex-shrink:0}
+.section{padding:80px 0;border-top:1px solid var(--border)}
+.section-label{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.section-label::before{content:'';display:block;width:16px;height:1px;background:var(--gold)}
+h2{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(24px,4vw,38px);letter-spacing:-0.02em;margin-bottom:16px;color:var(--text)}
+h2 em{font-style:normal;color:var(--gold)}
+.section-desc{max-width:560px;color:var(--muted);font-size:14px;line-height:1.85;margin-bottom:48px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.feature-card{background:var(--surface);padding:28px;transition:background 0.2s}
+.feature-card:hover{background:#151a28}
+.feature-icon{font-size:24px;margin-bottom:16px}
+.feature-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
+.feature-text{font-size:12px;color:var(--muted);line-height:1.7}
+.feature-text em{color:var(--gold);font-style:normal}
+.banks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:24px}
+.bank-item{background:var(--surface);padding:20px 24px;transition:background 0.2s;display:flex;flex-direction:column;gap:4px}
+.bank-item:hover{background:#151a28}
+.bank-name{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--text)}
+.bank-code{font-size:11px;color:var(--muted)}
+.how-list{display:flex;flex-direction:column;gap:12px;max-width:600px}
+.how-step{display:flex;align-items:flex-start;gap:16px;padding:20px 24px;background:var(--surface);border:1px solid var(--border);border-radius:8px}
+.how-num{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--gold);flex-shrink:0;min-width:28px;line-height:1.2}
+.how-title{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;margin-bottom:4px;color:var(--text)}
+.how-text{font-size:12px;color:var(--muted);line-height:1.6}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.spec-item{background:var(--surface);padding:20px 24px}
+.spec-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.spec-value{font-size:14px;color:var(--text)}
+.spec-value em{color:var(--gold);font-style:normal}
+.contact-section{padding:80px 0;border-top:1px solid var(--border)}
+.contact-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.contact-text h2{font-family:'Syne',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.02em;margin-bottom:8px}
+.contact-text p{color:var(--muted);font-size:13px}
+.contact-email{display:inline-flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:600;font-size:16px;color:var(--gold);text-decoration:none;border:1px solid var(--gold-dim);padding:14px 24px;border-radius:6px;transition:all 0.2s;white-space:nowrap}
+.contact-email:hover{background:rgba(201,168,76,0.08)}
+footer{padding:32px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--muted)}
+.footer-logo span{color:var(--gold)}
+.footer-info{font-size:12px;color:var(--muted)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{animation:fadeUp 0.6s ease both}
+h1{animation:fadeUp 0.6s 0.1s ease both}
+.hero-tagline{animation:fadeUp 0.6s 0.15s ease both}
+.hero-desc{animation:fadeUp 0.6s 0.2s ease both}
+.price-badge{animation:fadeUp 0.6s 0.25s ease both}
+.cta-store{animation:fadeUp 0.6s 0.3s ease both}
+@media(max-width:600px){.features-grid{grid-template-columns:1fr}.banks-grid{grid-template-columns:1fr 1fr}.contact-box{flex-direction:column;align-items:flex-start}.hero{padding:60px 0 50px}}
+</style>
+</head>
+<body>
+<div class="container">
+<nav>
+<a href="/" class="logo">Offshore<span>Labs</span></a>
+<div class="nav-right">
+<span class="nav-badge">Android &middot; Live</span>
+<a href="/" class="nav-back">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+All products
+</a>
+</div>
+</nav>
+<section class="hero">
+<div class="hero-eyebrow">ManiTalk &middot; Android</div>
+<h1>Your payments,<br><em>out loud.</em></h1>
+<p class="hero-tagline">Your payments, out loud.</p>
+<p class="hero-desc">When you're running a market stall or street food cart, you can't always see your phone. ManiTalk listens for Thai bank payment SMS confirmations and reads them aloud &mdash; in Thai and English &mdash; so you always know the money arrived.</p>
+<div class="price-badge">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+&#x0E3F;79 / month
+</div>
+<a href="#" class="cta-store">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.33.18.7.24 1.06.18L14.93 12 4.24.06A1.75 1.75 0 0 0 3 1.75v20.5c0 .6.33 1.15.18 1.51zM16.54 13.42l2.86-1.65a1.75 1.75 0 0 0 0-3.04l-2.86-1.65L13.61 12l2.93 1.42zM5.08.06 15.41 10.4l-2.17 2.17L5.08.06zm0 23.88 8.16-12.51-2.17-2.17L5.08 23.94z"/></svg>
+Get it on Google Play
+</a>
+</section>
+<section class="section">
+<div class="section-label">Features</div>
+<h2>Hear your money<br><em>arrive.</em></h2>
+<p class="section-desc">Designed for street vendors, market stalls, and anyone who accepts QR payments in Thailand &mdash; ManiTalk does one thing and does it perfectly.</p>
+<div class="features-grid">
+<div class="feature-card">
+<div class="feature-icon">&#x1F50A;</div>
+<div class="feature-title">Read Aloud</div>
+<div class="feature-text">Payment confirmations are read aloud <em>immediately</em> when the SMS arrives. Hear the amount and sender bank in Thai and English.</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">&#x1F4F1;</div>
+<div class="feature-title">QR Payments</div>
+<div class="feature-text">Works with all Thai QR code payment systems &mdash; <em>PromptPay, QR30</em>, and bank-specific QR codes. Any amount, instantly announced.</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">&#x1F1F9;&#x1F1ED;</div>
+<div class="feature-title">Thai &amp; English</div>
+<div class="feature-text">Announces payments in <em>both Thai and English</em>. Works for Thai vendors and foreign tourists paying at your stall.</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">&#x26A1;</div>
+<div class="feature-title">Instant &amp; Offline</div>
+<div class="feature-text">Reads SMS directly &mdash; <em>no internet required</em> for detection. Works even with poor signal. No server, no delay.</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">&#x1F512;</div>
+<div class="feature-title">Privacy First</div>
+<div class="feature-text">Processes SMS <em>locally on device</em>. No data leaves your phone. No account required. No tracking, no analytics.</div>
+</div>
+<div class="feature-card">
+<div class="feature-icon">&#x1F4B3;</div>
+<div class="feature-title">&#x0E3F;79 / Month</div>
+<div class="feature-text">Simple monthly subscription at <em>&#x0E3F;79 per month</em>. Cancel anytime. No annual lock-in, no hidden fees.</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="section-label">Supported Banks</div>
+<h2>All major Thai<br><em>banks</em> supported.</h2>
+<p class="section-desc">ManiTalk recognises payment SMS from Thailand's five major banks. More banks added based on user requests.</p>
+<div class="banks-grid">
+<div class="bank-item">
+<div class="bank-name">SCB</div>
+<div class="bank-code">Siam Commercial Bank</div>
+</div>
+<div class="bank-item">
+<div class="bank-name">KBank</div>
+<div class="bank-code">Kasikorn Bank</div>
+</div>
+<div class="bank-item">
+<div class="bank-name">Bangkok Bank</div>
+<div class="bank-code">BBL</div>
+</div>
+<div class="bank-item">
+<div class="bank-name">KTB</div>
+<div class="bank-code">Krungthai Bank</div>
+</div>
+<div class="bank-item">
+<div class="bank-name">TMBThanachart</div>
+<div class="bank-code">TTB &middot; formerly TMB</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="section-label">How It Works</div>
+<h2>Three steps,<br><em>zero</em> setup.</h2>
+<div class="how-list">
+<div class="how-step">
+<div class="how-num">01</div>
+<div>
+<div class="how-title">Install &amp; Subscribe</div>
+<div class="how-text">Install ManiTalk from Google Play, subscribe for &#x0E3F;79/month, and grant SMS read permission. That's the only permission required.</div>
+</div>
+</div>
+<div class="how-step">
+<div class="how-num">02</div>
+<div>
+<div class="how-title">Customer Scans &amp; Pays</div>
+<div class="how-text">Your customer scans your PromptPay QR code and completes the payment through their bank app.</div>
+</div>
+</div>
+<div class="how-step">
+<div class="how-num">03</div>
+<div>
+<div class="how-title">ManiTalk Reads It Aloud</div>
+<div class="how-text">The confirmation SMS arrives and ManiTalk immediately announces the amount and bank &mdash; in Thai and English. You heard the money arrive.</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="section-label">Technical Details</div>
+<h2>Built to<br><em>just work.</em></h2>
+<div class="spec-grid">
+<div class="spec-item">
+<div class="spec-label">Platform</div>
+<div class="spec-value"><em>Android</em></div>
+</div>
+<div class="spec-item">
+<div class="spec-label">Languages</div>
+<div class="spec-value">Thai &amp; <em>English</em></div>
+</div>
+<div class="spec-item">
+<div class="spec-label">Banks Supported</div>
+<div class="spec-value"><em>5</em> major banks</div>
+</div>
+<div class="spec-item">
+<div class="spec-label">Internet Required</div>
+<div class="spec-value"><em>No</em> &mdash; offline</div>
+</div>
+<div class="spec-item">
+<div class="spec-label">Price</div>
+<div class="spec-value"><em>&#x0E3F;79</em> / month</div>
+</div>
+<div class="spec-item">
+<div class="spec-label">Status</div>
+<div class="spec-value"><em>Live</em> on Google Play</div>
+</div>
+</div>
+</section>
+<section class="contact-section">
+<div class="contact-box">
+<div class="contact-text">
+<h2>Get in touch</h2>
+<p>Support, bank requests, or feature ideas.</p>
+</div>
+<a href="mailto:dev@offshorelabs.dev" class="contact-email">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+dev@offshorelabs.dev
+</a>
+</div>
+</section>
+<footer>
+<div class="footer-logo">Offshore<span>Labs</span></div>
+<div class="footer-info">&copy; 2024 Offshore Labs &middot; offshorelabs.dev</div>
+</footer>
+</div>
+</body>
+</html>"
