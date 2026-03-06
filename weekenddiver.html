@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekend Diver — Offshore Labs</title>
+<meta name="description" content="The dive computer for the other 99%. Apple Watch dive computer for casual and tourist divers. Weekly subscription, no commitment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0d12;--surface:#111520;--border:#1e2535;--gold:#c9a84c;--gold-dim:#7a6230;--text:#e8eaf0;--muted:#5a6080;--accent:#2a6fff}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;line-height:1.7;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,180,200,0.06) 0%,transparent 70%);pointer-events:none;z-index:0}
+.container{max-width:900px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+nav{padding:28px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);gap:16px;flex-wrap:wrap}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em;color:var(--text);text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-back{font-size:12px;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);padding:6px 14px;border-radius:4px;transition:all 0.2s;letter-spacing:0.05em}
+.nav-back:hover{border-color:var(--gold-dim);color:var(--gold)}
+.hero{padding:100px 0 80px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+.hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(38px,6vw,64px);line-height:1.05;letter-spacing:-0.03em;margin-bottom:16px;color:var(--text)}
+h1 em{font-style:normal;color:var(--gold)}
+.hero-tagline{font-family:'Syne',sans-serif;font-weight:600;font-size:clamp(18px,3vw,26px);color:var(--muted);margin-bottom:32px;letter-spacing:-0.01em}
+.hero-desc{max-width:560px;color:var(--muted);font-size:14px;line-height:1.85;margin-bottom:48px}
+.cta-form{display:flex;gap:12px;flex-wrap:wrap;max-width:480px}
+.cta-input{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;padding:12px 16px;border-radius:6px;outline:none;transition:border-color 0.2s}
+.cta-input::placeholder{color:var(--muted)}
+.cta-input:focus{border-color:var(--gold-dim)}
+.cta-btn{background:var(--gold);color:#0a0d12;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;padding:12px 24px;border:none;border-radius:6px;cursor:pointer;white-space:nowrap;transition:opacity 0.2s;letter-spacing:0.02em}
+.cta-btn:hover{opacity:0.85}
+.cta-note{font-size:11px;color:var(--muted);margin-top:12px;letter-spacing:0.03em}
+.section{padding:80px 0;border-top:1px solid var(--border)}
+.section-label{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.section-label::before{content:'';display:block;width:16px;height:1px;background:var(--gold)}
+h2{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(24px,4vw,38px);letter-spacing:-0.02em;margin-bottom:16px;color:var(--text)}
+h2 em{font-style:normal;color:var(--gold)}
+.section-desc{max-width:560px;color:var(--muted);font-size:14px;line-height:1.85;margin-bottom:48px}
+.concept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.concept-card{background:var(--surface);padding:28px;transition:background 0.2s}
+.concept-card:hover{background:#151a28}
+.concept-icon{font-size:24px;margin-bottom:16px}
+.concept-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
+.concept-text{font-size:12px;color:var(--muted);line-height:1.7}
+.concept-text em{color:var(--gold);font-style:normal}
+.pricing-table{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:24px}
+.pricing-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border)}
+.pricing-row:last-child{border-bottom:none}
+.pricing-row.header{background:rgba(201,168,76,0.04)}
+.pricing-cell{padding:16px 20px;font-size:13px}
+.pricing-row.header .pricing-cell{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:12px 20px}
+.pricing-cell.product{font-family:'Syne',sans-serif;font-weight:600;color:var(--text)}
+.pricing-cell.price{color:var(--muted)}
+.pricing-cell.price em{color:var(--gold);font-style:normal}
+.pricing-cell.gap{color:var(--muted);font-size:12px}
+.pricing-cell.gap em{color:#4ade80;font-style:normal}
+.pricing-note{font-size:12px;color:var(--muted);line-height:1.7}
+.dist-row{display:flex;align-items:flex-start;gap:20px;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:12px}
+.dist-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.dist-title{font-family:'Syne',sans-serif;font-weight:600;font-size:14px;margin-bottom:4px;color:var(--text)}
+.dist-text{font-size:12px;color:var(--muted);line-height:1.7}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:24px}
+.spec-item{background:var(--surface);padding:20px 24px;transition:background 0.2s}
+.spec-item:hover{background:#151a28}
+.spec-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.spec-value{font-size:14px;color:var(--text)}
+.spec-value em{color:var(--gold);font-style:normal}
+.contact-section{padding:80px 0;border-top:1px solid var(--border)}
+.contact-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.contact-text h2{font-family:'Syne',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.02em;margin-bottom:8px}
+.contact-text p{color:var(--muted);font-size:13px}
+.contact-email{display:inline-flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:600;font-size:16px;color:var(--gold);text-decoration:none;border:1px solid var(--gold-dim);padding:14px 24px;border-radius:6px;transition:all 0.2s;white-space:nowrap}
+.contact-email:hover{background:rgba(201,168,76,0.08)}
+footer{padding:32px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--muted)}
+.footer-logo span{color:var(--gold)}
+.footer-info{font-size:12px;color:var(--muted)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{animation:fadeUp 0.6s ease both}
+h1{animation:fadeUp 0.6s 0.1s ease both}
+.hero-tagline{animation:fadeUp 0.6s 0.15s ease both}
+.hero-desc{animation:fadeUp 0.6s 0.2s ease both}
+.cta-form{animation:fadeUp 0.6s 0.3s ease both}
+@media(max-width:600px){.concept-grid{grid-template-columns:1fr}.pricing-row{grid-template-columns:1fr 1fr}.pricing-cell.gap{display:none}.contact-box{flex-direction:column;align-items:flex-start}.hero{padding:60px 0 50px}}
+</style>
+</head>
+<body>
+<div class="container">
+<nav>
+<a href="/" class="logo">Offshore<span>Labs</span></a>
+<a href="/" class="nav-back">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+All products
+</a>
+</nav>
+<section class="hero">
+<div class="hero-eyebrow">Weekend Diver &middot; watchOS</div>
+<h1>Dive computer for the<br><em>other 99%.</em></h1>
+<p class="hero-tagline">The dive computer for the other 99%</p>
+<p class="hero-desc">Most divers dive once a year on holiday. Why pay $10/month all year for a dive computer? Weekend Diver is an Apple Watch Ultra dive computer built for tourist and casual divers &mdash; pay only for the weeks you actually dive.</p>
+<form class="cta-form" onsubmit="handleSubmit(event)">
+<input type="email" class="cta-input" placeholder="your@email.com" required>
+<button type="submit" class="cta-btn">Notify me at launch</button>
+</form>
+<p class="cta-note">No spam. One email when we launch.</p>
+</section>
+<section class="section">
+<div class="section-label">Concept</div>
+<h2>Pay for the weeks<br>you <em>actually</em> dive.</h2>
+<p class="section-desc">Built for divers who explore the world, not the local dive club. A full-featured dive computer on your wrist &mdash; no rental, no bulk subscription, no commitment.</p>
+<div class="concept-grid">
+<div class="concept-card">
+<div class="concept-icon">&#x231A;</div>
+<div class="concept-title">Apple Watch Ultra</div>
+<div class="concept-text">Runs natively on Apple Watch Ultra. The same hardware that&rsquo;s already on your wrist &mdash; now a certified dive computer.</div>
+</div>
+<div class="concept-card">
+<div class="concept-icon">&#x1F4C5;</div>
+<div class="concept-title">Weekly Subscription</div>
+<div class="concept-text">Subscribe for <em>$3&ndash;5 per week</em>. Activate before your dive trip, cancel when you&rsquo;re back. No annual lock-in.</div>
+</div>
+<div class="concept-card">
+<div class="concept-icon">&#x1F4D3;</div>
+<div class="concept-title">Free Logbook Forever</div>
+<div class="concept-text">Your dive log is <em>free forever</em>, even when not subscribed. Every dive recorded, stored, and synced to your iPhone.</div>
+</div>
+<div class="concept-card">
+<div class="concept-icon">&#x1F9EE;</div>
+<div class="concept-title">B&uuml;hlmann ZH-L16C</div>
+<div class="concept-text">Powered by the industry-standard <em>B&uuml;hlmann ZH-L16C</em> decompression algorithm. The same math trusted by professional dive computers.</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="section-label">Pricing Comparison</div>
+<h2>The market charges<br>for <em>12 months.</em></h2>
+<p class="section-desc">You dive two weeks a year. Here&rsquo;s what the competition charges you for the other 50 weeks.</p>
+<div class="pricing-table">
+<div class="pricing-row header">
+<div class="pricing-cell">App</div>
+<div class="pricing-cell">Price</div>
+<div class="pricing-cell">Weekly option</div>
+</div>
+<div class="pricing-row">
+<div class="pricing-cell product">Oceanic+</div>
+<div class="pricing-cell price">$9.99 / month</div>
+<div class="pricing-cell gap">None &mdash; pay all year</div>
+</div>
+<div class="pricing-row">
+<div class="pricing-cell product">Mares Underwater</div>
+<div class="pricing-cell price">$8.99 / month</div>
+<div class="pricing-cell gap">None &mdash; pay all year</div>
+</div>
+<div class="pricing-row">
+<div class="pricing-cell product">Subsurface (desktop)</div>
+<div class="pricing-cell price">Free</div>
+<div class="pricing-cell gap">No Watch app</div>
+</div>
+<div class="pricing-row" style="background:rgba(201,168,76,0.04)">
+<div class="pricing-cell product" style="color:var(--gold)">Weekend Diver</div>
+<div class="pricing-cell price"><em>$3&ndash;5 / week</em></div>
+<div class="pricing-cell gap"><em style="color:#4ade80">Yes &mdash; only weeks you dive</em></div>
+</div>
+</div>
+<p class="pricing-note">Nobody else offers weekly pricing. We think that&rsquo;s a gap worth filling.</p>
+</section>
+<section class="section">
+<div class="section-label">Distribution</div>
+<h2>Available where<br>divers <em>actually are.</em></h2>
+<div class="dist-row">
+<div class="dist-icon">&#x1F3EA;</div>
+<div>
+<div class="dist-title">Dive Shop Partnerships</div>
+<div class="dist-text">QR codes at dive shop reception desks. Scan when you arrive, subscribe for the week, start diving. We handle onboarding at the point of need.</div>
+</div>
+</div>
+<div class="dist-row">
+<div class="dist-icon">&#x1F4F1;</div>
+<div>
+<div class="dist-title">App Store</div>
+<div class="dist-text">Available on the App Store. Download before your trip, start a weekly subscription, and have a certified dive computer on your wrist before you hit the water.</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="section-label">Technical Specs</div>
+<h2>Serious technology,<br><em>casual</em> pricing.</h2>
+<div class="spec-grid">
+<div class="spec-item">
+<div class="spec-label">Algorithm</div>
+<div class="spec-value"><em>B&uuml;hlmann ZH-L16C</em></div>
+</div>
+<div class="spec-item">
+<div class="spec-label">Hardware</div>
+<div class="spec-value">Apple Watch Ultra</div>
+</div>
+<div class="spec-item">
+<div class="spec-label">Platform</div>
+<div class="spec-value">watchOS + iOS</div>
+</div>
+<div class="spec-item">
+<div class="spec-label">Subscription</div>
+<div class="spec-value"><em>$3&ndash;5 / week</em></div>
+</div>
+<div class="spec-item">
+<div class="spec-label">Logbook</div>
+<div class="spec-value"><em>Free</em> forever</div>
+</div>
+<div class="spec-item">
+<div class="spec-label">Status</div>
+<div class="spec-value"><em>Coming</em> soon</div>
+</div>
+</div>
+</section>
+<section class="contact-section">
+<div class="contact-box">
+<div class="contact-text">
+<h2>Dive shop partnerships</h2>
+<p>Interested in putting a QR code on your reception desk?</p>
+</div>
+<a href="mailto:dev@offshorelabs.dev" class="contact-email">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+dev@offshorelabs.dev
+</a>
+</div>
+</section>
+<footer>
+<div class="footer-logo">Offshore<span>Labs</span></div>
+<div class="footer-info">&copy; 2024 Offshore Labs &middot; offshorelabs.dev</div>
+</footer>
+</div>
+<script>
+function handleSubmit(e) {
+e.preventDefault();
+var btn = e.target.querySelector('.cta-btn');
+btn.textContent = 'Got it!';
+btn.style.background = '#c9a84c';
+e.target.querySelector('.cta-input').disabled = true;
+btn.disabled = true;
+}
+</script>
+</body>
+</html>>
